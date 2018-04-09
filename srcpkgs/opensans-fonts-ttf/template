@@ -1,0 +1,21 @@
+# Template file for 'opensans-fonts-ttf'
+pkgname=opensans-fonts-ttf
+version=1.101
+revision=1
+noarch=yes
+wrksrc="opensans-${version}"
+depends="font-util"
+hostmakedepends="unzip"
+font_dirs="/usr/share/fonts/opensans"
+short_desc="Open Sans TTF Fonts"
+maintainer="Peter Bui <pbui@github.h4x0r.space>"
+license="Apache-2.0"
+homepage="https://fonts.google.com/specimen/Open+Sans"
+distfiles="https://www3.nd.edu/~pbui/static/zip/opensans-${version}.zip"
+checksum=1381d17d00d4039c8c6a80587be9a8553f87da37f0109dd2580eac5ec8cb42d6
+conflicts="google-fonts-ttf>=0"
+
+do_install() {
+	install -Dm644 Open*.ttf -t ${DESTDIR}/usr/share/fonts/opensans
+	vlicense LICENSE.txt
+}
