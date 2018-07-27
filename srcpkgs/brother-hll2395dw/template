@@ -1,0 +1,55 @@
+# Template file for 'brother-hll2395dw'
+pkgname=brother-hll2395dw
+version=4.0.0
+revision=1
+maintainer="Peter Bui <pbui@github.bx612.space>"
+homepage="http://support.brother.com/g/b/index.aspx"
+license="GPL-2"
+short_desc="CUPS driver for the Brother HL-L2395DW printer/scanner"
+distfiles="http://download.brother.com/welcome/dlf103564/hll2395dwpdrv-${version}-1.i386.deb"
+checksum=e2a66feda13c2e69530334223d86f04ed6742d59407b353d0730e348d300fea3
+only_for_archs="i686 x86_64 armv7l"
+depends="cups"
+create_wrksrc=yes
+nopie=yes
+
+do_extract() {
+	ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/hll2395dwpdrv-${version}-1.i386.deb
+}
+
+do_install() {
+	tar xzpvf data.tar.gz
+	mkdir -p ${DESTDIR}/usr/share
+
+	# Using /usr/share instead of /opt
+	mv opt/brother ${DESTDIR}/usr/share
+
+	sed -i 's|\\\/opt\\\/|\\\/usr\\\/|' "${DESTDIR}/usr/share/brother/Printers/HLL2395DW/cupswrapper/lpdwrapper"
+	sed -i 's|\\\/opt\\\/|\\\/usr\\\/|' "${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/lpdfilter"
+
+	# Symlink for lpdwrapper so it correctly figures out the printer model from the path
+	install -d "${DESTDIR}/usr/lib/cups/filter/"
+	ln -s "/usr/share/brother/Printers/HLL2395DW/cupswrapper/lpdwrapper" "${DESTDIR}/usr/lib/cups/filter/brother_lpdwrapper_HLL2395DW"
+
+	# Symlink for the PPD
+	install -d "${DESTDIR}/usr/share/cups/model/"
+	ln -s "/usr/share/brother/Printers/HLL2395DW/cupswrapper/brother-HLL2395DW-cups-en.ppd" "${DESTDIR}/usr/share/cups/model/"
+
+	# A couple architecture-specific symlinks
+	case ${XBPS_TARGET_MACHINE} in
+	*armv7l*)
+	rm -fr ${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/{i686,x86_64}/
+	;;
+	*i686*)
+	rm -fr ${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/{armv7l,x86_64}/
+	;;
+	*x86_64*)
+	rm -fr ${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/{armv7l,i686}/
+	;;
+	esac
+	ln -s "/usr/share/brother/Printers/HLL2395DW/lpd/${XBPS_TARGET_MACHINE}/brprintconflsr3" "${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/"
+	ln -s "/usr/share/brother/Printers/HLL2395DW/lpd/${XBPS_TARGET_MACHINE}/rawtobr3" "${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/"
+
+	# Symlink for inf because it tries to execute it there
+	ln -s "/usr/share/brother/Printers/HLL2395DW/inf" "${DESTDIR}/usr/share/brother/Printers/HLL2395DW/lpd/"
+}
