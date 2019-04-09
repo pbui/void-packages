@@ -1,0 +1,22 @@
+# Template file for 'font-public-sans-ttf'
+pkgname=font-public-sans-ttf
+version=1.0.0
+revision=1
+archs=noarch
+wrksrc="public-sans-v${version}"
+makedepends="unzip"
+depends="font-util xbps-triggers"
+short_desc="Strong, neutral, principles-driven, typeface for text or display"
+maintainer='Peter Bui <pbui@github.bx612.space>'
+license="OFL-1.1"
+homepage="https://public-sans.digital.gov/"
+distfiles="https://github.com/uswds/public-sans/releases/download/v${version}/public-sans-v${version}.zip"
+checksum=f2ae81c5e3949e867957abac962588fece769bba04e34eb2328a7a1962034fba
+
+font_dirs="/usr/share/fonts/TTF"
+
+do_install() {
+	vmkdir usr/share/fonts/TTF
+
+	vcopy fonts/webfonts/*.ttf usr/share/fonts/TTF
+}
