@@ -1,6 +1,6 @@
 # Template file for 'vim'
 pkgname=vim
-version=8.1.2021
+version=8.1.2056
 revision=1
 hostmakedepends="glib-devel pkg-config"
 makedepends="acl-devel gtk+3-devel libXt-devel lua-devel ncurses-devel
@@ -11,7 +11,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="Vim"
 homepage="https://www.vim.org"
 distfiles="https://github.com/vim/vim/archive/v${version}.tar.gz"
-checksum=b56a9cc7f950dc98fef925acfed35824979c2fa34b4607155117204891adfed8
+checksum=7325a524932d429de4ec67e6935059b3cc119a6920656fe499d7067bdb30fa43
 
 subpackages="xxd vim-common vim-x11 gvim"
 # XXX vim-huge cannot be cross compiled for now.
