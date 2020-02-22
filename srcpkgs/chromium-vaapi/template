@@ -2,7 +2,7 @@
 _pkgname=chromium
 pkgname="${_pkgname}-vaapi"
 # See http://www.chromium.org/developers/calendar for the latest version
-version=80.0.3987.87
+version=80.0.3987.116
 revision=1
 archs="i686 x86_64*"
 wrksrc="${_pkgname}-${version}"
@@ -11,7 +11,7 @@ maintainer="Enno Boland <gottox@voidlinux.org>"
 license="BSD-3-Clause"
 homepage="https://www.chromium.org/"
 distfiles="https://commondatastorage.googleapis.com/chromium-browser-official/${_pkgname}-${version}.tar.xz"
-checksum=f51f6fca5d9abbef855aa6b5bf427410c6e96ae58b64a7d45f843868cfb0ac8e
+checksum=65c5d9bc510b712170c6013acd3bbb07d770a1ce02d64d01890386e9e5678901
 replaces="${_pkgname}>=0"
 provides="${_pkgname}-${version}_${revision}"
 
@@ -41,6 +41,10 @@ build_options_default="clang"
 
 case "${XBPS_TARGET_MACHINE}" in
 	x86_64|i686) build_options_default+=" js_optimize" ;;
+esac
+
+case "${XBPS_TARGET_MACHINE}" in
+	i686) broken="what():  std::bad_alloc during linking" ;;
 esac
 
 post_extract() {
