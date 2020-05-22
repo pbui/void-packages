@@ -1,0 +1,22 @@
+commit bf147987003678ae70c2c2ed5275ca4d75842990
+Author: Dmitry Torokhov <dtor@chromium.org>
+Date:   Tue Jul 9 11:51:21 2019 -0700
+
+    Bump up PassCmd buffer size to 2KiB
+    
+    While ordinary passwords are rarely longer than 80 bytes, XOAUTH2 tokens
+    easily exceed this limit. Let's bump it up to 2K to be really safe.
+
+diff --git a/src/drv_imap.c b/src/drv_imap.c
+index 0f72c1a..a4959fb 100644
+--- src/drv_imap.c
++++ src/drv_imap.c
+@@ -1875,7 +1875,7 @@ ensure_password( imap_server_conf_t *srvc )
+ 	if (cmd) {
+ 		FILE *fp;
+ 		int ret;
+-		char buffer[80];
++		char buffer[2048];  // Hopefully more than enough room for XOAUTH2, etc. tokens
+ 
+ 		if (*cmd == '+') {
+ 			flushn();
