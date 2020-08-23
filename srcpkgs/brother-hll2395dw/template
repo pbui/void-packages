@@ -2,15 +2,16 @@
 pkgname=brother-hll2395dw
 version=4.0.0
 revision=1
-maintainer="Peter Bui <pbui@github.bx612.space>"
-homepage="http://support.brother.com/g/b/index.aspx"
-license="GPL-2"
+create_wrksrc=yes
+makedepends="tar"
+depends="cups"
 short_desc="CUPS driver for the Brother HL-L2395DW printer/scanner"
+maintainer="Peter Bui <pbui@github.bx612.space>"
+license="GPL-2.0-or-later"
+homepage="http://support.brother.com/g/b/index.aspx"
 distfiles="http://download.brother.com/welcome/dlf103564/hll2395dwpdrv-${version}-1.i386.deb"
 checksum=e2a66feda13c2e69530334223d86f04ed6742d59407b353d0730e348d300fea3
 only_for_archs="i686 x86_64 armv7l"
-depends="cups"
-create_wrksrc=yes
 nopie=yes
 
 do_extract() {
