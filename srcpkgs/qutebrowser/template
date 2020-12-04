@@ -1,6 +1,6 @@
 # Template file for 'qutebrowser'
 pkgname=qutebrowser
-version=1.14.0
+version=1.14.1
 revision=1
 build_style=python3-module
 hostmakedepends="python3-setuptools asciidoc"
@@ -13,7 +13,7 @@ license="GPL-3.0-or-later"
 homepage="https://qutebrowser.org/"
 changelog="https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/doc/changelog.asciidoc"
 distfiles="https://github.com/qutebrowser/qutebrowser/releases/download/v${version}/qutebrowser-${version}.tar.gz"
-checksum=76eb14097bab873ffae73bb4d017b4d22aa5c4604d45f0b9570dfaed4720374a
+checksum=554c145ff64b1a92d4f53e3c624aaad51baafb7cb5b469bc815ae2e0e1958796
 nostrip=yes
 
 build_options="webengine"
