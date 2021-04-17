@@ -1,0 +1,17 @@
+# Template file for 'pop-icon-theme'
+
+_githash="c3a5355ad927f8574875aa850fd3939df3083220"
+_gitshort="${_githash:0:7}"
+
+pkgname=pop-icon-theme
+version=2.1.0
+revision=1
+wrksrc="icon-theme-${_githash}"
+build_style=meson
+depends="gnome-icon-theme"
+short_desc="System76 Pop Icon Theme"
+maintainer="Peter Bui <pbui@github.bx612.space>"
+license="GPL-3.0-or-later"
+homepage=https://github.com/pop-os/icon-theme
+distfiles="https://github.com/pop-os/icon-theme/archive/${_githash}.tar.gz"
+checksum=67d5495879b36df6663f735c7c30ce398cac55039c3d274c50736da3e84515c6
