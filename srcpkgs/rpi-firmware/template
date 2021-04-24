@@ -1,10 +1,10 @@
 # Template file for 'rpi-firmware'
-_githash="8f13114b9ea29bd004151d4a8afa500b2df721be"
+_githash="2ac4de4eaac5c1d1b25acec4a5e0a9fdb16f0c91"
 _gitshort="${_githash:0:7}"
 
 pkgname=rpi-firmware
-version=20201123
-revision=4
+version=20210421
+revision=1
 archs="armv6l* armv7l* aarch64*"
 wrksrc="firmware-${_githash}"
 provides="linux-firmware-broadcom-${version}_${revision}"
@@ -14,7 +14,7 @@ maintainer="Piraty <piraty1@inbox.ru>"
 license="BSD-3-Clause, custom:Cypress"
 homepage="https://github.com/raspberrypi/firmware"
 distfiles="https://github.com/raspberrypi/firmware/archive/${_githash}.tar.gz"
-checksum=f9be0cc177aae7dddaa0a2967d090ea33a95be9dd519d2eee3bc740af8ffb19e
+checksum=c687aa1b5127a8dc0773e8aefb1f009f24bf71ccb4c9e8b40a1d46cbbb7bee0c
 
 conf_files="/boot/cmdline.txt /boot/config.txt"
 nostrip=yes
